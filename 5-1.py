@@ -24,7 +24,7 @@ def main():
     # Use to compute Ein and Eout
     U, V, E_in = train_model(M, N, K, eta, reg, Y_train)
     E_out = get_err(U, V, Y_test)
-    print(E_out)
+    print('E_out (MSE): ', E_out)
 
     # Apply SVD to V
     A, s, B = np.linalg.svd(V)
