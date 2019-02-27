@@ -4,8 +4,10 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from prob2utils import train_model, get_err
-
+import pandas as pd
 def main():
+    movies = pd.read_csv('data/movies.txt', encoding='latin_1', header=None, delimiter='\t').values
+
     Y_train = np.loadtxt('data/train.txt').astype(int)
     Y_test = np.loadtxt('data/test.txt').astype(int)
 
@@ -35,10 +37,12 @@ def main():
     print(V_projected.shape)
     X = V_projected[:, 0]
     Y = V_projected[:, 1]
+
+
     # 2 (a) any 10 movies
     for i in range(10):
         plt.scatter(X[i], Y[i], marker='x')
-        plt.text(X[i]+0.005, Y[i]+0.005, str(i))
+        plt.text(X[i]+.005, Y[i]+.005, movies[i][1])
     plt.show()
 
 if __name__ == "__main__":
