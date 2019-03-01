@@ -4,6 +4,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from biasedutils import train_model, get_err
+from basicvis import visualize
 
 def main():
     Y_train = np.loadtxt('data/train.txt').astype(int)
@@ -30,16 +31,10 @@ def main():
     A2 = A[:, :2]
     U_projected = np.dot(A2.T, U.T)
     V_projected = np.dot(A2.T, V).T
-    print(A.shape)
-    print(U_projected.shape)
-    print(V_projected.shape)
     X = V_projected[:, 0]
     Y = V_projected[:, 1]
-    # 2 (a) any 10 movies
-    for i in range(10):
-        plt.scatter(X[i], Y[i], marker='x')
-        plt.text(X[i]+0.005, Y[i]+0.005, str(i))
-    plt.show()
+    visualize(X, Y, '5-2')
+
 
 if __name__ == "__main__":
     main()

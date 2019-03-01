@@ -61,7 +61,7 @@ def get_err(U, V, a, b, Y, reg=0.0):
     # Return the mean of the regularized error
     return err / float(len(Y))
 
-def train_model(M, N, K, eta, reg, Y, eps=0.0001, max_epochs=1):
+def train_model(M, N, K, eta, reg, Y, eps=0.0001, max_epochs=100):
     """
     Given a training data matrix Y containing rows (i, j, Y_ij)
     where Y_ij is user i's rating on movie j, learns an

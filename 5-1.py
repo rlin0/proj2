@@ -3,7 +3,7 @@
 
 import numpy as np
 import matplotlib.pyplot as plt
-from prob2utils import train_model, get_err
+from basicutils import train_model, get_err
 from basicvis import visualize
 from collections import Counter
 
@@ -32,13 +32,10 @@ def main():
     A2 = A[:, :2]
     U_projected = np.dot(A2.T, U.T)
     V_projected = np.dot(A2.T, V).T
-    print(A.shape)
-    print(U_projected.shape)
-    print(V_projected.shape)
     X = V_projected[:, 0]
     Y = V_projected[:, 1]
-    
-    visualize(X, Y)
+
+    visualize(X, Y, '5-1')
 
 if __name__ == "__main__":
     main()

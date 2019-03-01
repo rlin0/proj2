@@ -39,13 +39,13 @@ def graph(movie_ids, title, png):
     plt.savefig(png)
     plt.close()
 
-def visualize(X, Y):
+def visualize(X, Y, filename):
     movies = pd.read_csv('data/movies.txt', delimiter="\t", header=None, encoding="latin_1", usecols = (0,1,3,4,5)).values
     for i in range(10):
         plt.scatter(X[i], Y[i], marker='x')
         plt.text(X[i]+.005, Y[i]+.005, movies[i][1])
         plt.title('Any 10 Movies')
-    plt.show()
+    plt.savefig(filename + 'any10.png')
     plt.close()
     pop_mov_ids, high_mov_ids = getPopHighMovieIds()
 
@@ -53,14 +53,14 @@ def visualize(X, Y):
         plt.scatter(X[id-1], Y[id-1], marker='x')
         plt.text(X[id-1]+.005, Y[id-1]+.005, movies[id-1][1])
     plt.title('Popular 10 Movies')
-    plt.show()
+    plt.savefig(filename + 'pop10.png')
     plt.close()
 
     for id in high_mov_ids:
         plt.scatter(X[id-1], Y[id-1], marker='x')
         plt.text(X[id-1]+.005, Y[id-1]+.005, movies[id-1][1])
     plt.title('Highest Rated 10 Movies')
-    plt.show()
+    plt.savefig(filename + 'high10.png')
     plt.close()
 
     cat = ['Action', 'Adventure', 'Animation']
@@ -70,7 +70,7 @@ def visualize(X, Y):
             plt.scatter(X[id-1], Y[id-1], marker='x')
             plt.text(X[id-1]+.005, Y[id-1]+.005, movies[id-1][1])
         plt.title(cat[i] + ' Movies')
-        plt.show()
+        plt.savefig(filename + cat[i] + '.png')
         plt.close()
 
 data = np.loadtxt('data/data.txt')
