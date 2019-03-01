@@ -4,6 +4,7 @@ from surprise.model_selection import GridSearchCV
 
 import numpy as np
 import matplotlib.pyplot as plt
+from basicvis import visualize
 
 def main():
     # Initialize  dataset (from old code)
@@ -52,6 +53,20 @@ def main():
     print(gs.best_params['rmse'])
     '''
     # Results: best params were n_epochs=30, reg=0.1, lr=0.01
+
+    # Apply SVD to V
+    V = algo.qi.T
+    U = algo.pu
+    A, s, B = np.linalg.svd(V)
+    # Use first 2 columns of A
+    A2 = A[:, :2]
+    print(U.shape, V.shape, A2.shape)
+    U_projected = np.dot(A2.T, U.T)
+    V_projected = np.dot(A2.T, V).T
+    X = V_projected[:, 0]
+    Y = V_projected[:, 1]
+
+    visualize(X, Y, '5-3')
 
 # Computes mean squared error to match that used in prob2utils.py
 def get_err(predictions):
