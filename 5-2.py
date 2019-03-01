@@ -4,7 +4,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from biasedutils import train_model, get_err
-from basicvis import visualize
+from basicvis import visualize, interesting_vis
 
 def main():
     Y_train = np.loadtxt('data/train.txt').astype(int)
@@ -34,7 +34,7 @@ def main():
     X = V_projected[:, 0]
     Y = V_projected[:, 1]
     visualize(X, Y, '5-2')
-
+    interesting_vis(X, Y, '5-2')
 
 if __name__ == "__main__":
     main()

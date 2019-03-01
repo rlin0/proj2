@@ -73,6 +73,29 @@ def visualize(X, Y, filename):
         plt.savefig(filename + cat[i] + '.png')
         plt.close()
 
+def interesting_vis(X, Y, filename):
+    movies = pd.read_csv('data/movies.txt', delimiter="\t", header=None, encoding="latin_1", usecols = (0, 1, 9, 13, 14)).values
+    cat = ['Documentary', 'Horror', 'Musical']
+    color = ['y','b','m']
+    red_dot, = plt.plot(1, "y.")
+    purple_dot, = plt.plot(1, "b.")
+    green_dot, = plt.plot(1, "m.")
+
+    plt.legend([red_dot, purple_dot, green_dot], cat)
+    avg = [[0,0], [0,0], [0,0]]
+    for i in range(3):
+        cat_ids = [x[0] for x in movies if x[i+2] == 1]
+        for id in cat_ids:
+            avg[i][0] += X[id-1]
+            avg[i][1] += Y[id-1]
+            plt.scatter(X[id-1], Y[id-1], marker='.', c=color[i])
+        avg[i][0] /= len(cat_ids)
+        avg[i][1] /= len(cat_ids)
+        plt.scatter(avg[i][0], avg[i][1], marker='*', s=20, c=color[i])
+    plt.title('Documentary, Horror, Musical Movies')
+    plt.savefig(filename + '3genres.png')
+    plt.close()
+
 data = np.loadtxt('data/data.txt')
 mov_ratings = data[:, 1:]
 mov_ids = data[:, 1]

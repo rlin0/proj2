@@ -4,7 +4,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from basicutils import train_model, get_err
-from basicvis import visualize
+from basicvis import visualize, interesting_vis
 from collections import Counter
 
 def main():
@@ -36,6 +36,7 @@ def main():
     Y = V_projected[:, 1]
 
     visualize(X, Y, '5-1')
+    interesting_vis(X, Y, '5-1')
 
 if __name__ == "__main__":
     main()
