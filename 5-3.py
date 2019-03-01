@@ -60,7 +60,6 @@ def main():
     A, s, B = np.linalg.svd(V)
     # Use first 2 columns of A
     A2 = A[:, :2]
-    print(U.shape, V.shape, A2.shape)
     U_projected = np.dot(A2.T, U.T)
     V_projected = np.dot(A2.T, V).T
     X = V_projected[:, 0]
